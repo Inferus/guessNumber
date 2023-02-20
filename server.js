@@ -19,8 +19,12 @@ const io = new Server(server,{
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    socket.on('createRoom',()=>{
+        socket.broadcast.emit('roomCreated', socket.id)
+      })
   });
 
+ 
 
 
 

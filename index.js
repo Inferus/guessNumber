@@ -5,8 +5,10 @@ const startBtn = document.querySelector('.startBtn')
 const mainSection = document.querySelector('.mainSection')
 const rooms = document.querySelector('.rooms')
 
-ws.on('createRoom',(e)=>{
-    const room = document.createElement('')
+ws.on('roomCreated',(e)=>{
+    console.log(e)
+    const room = document.createElement('button')
+    room.innerText = e
     rooms.append(room)
 })
 startBtn.addEventListener('click',()=>{
@@ -18,9 +20,6 @@ function main(){
    const loader = document.createElement('img')
    loader.src = 'public/assets/Ghost.gif'
    mainSection.append(loader)
+   ws.emit('createRoom')
 
-}
-
-function createRoom(){
-    ws.emit('createRoom', ws.id)
 }
